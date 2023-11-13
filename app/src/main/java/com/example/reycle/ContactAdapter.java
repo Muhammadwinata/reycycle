@@ -1,13 +1,21 @@
 package com.example.reycle;
 
-import
+
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
     private final LayoutInflater minflater;
@@ -25,7 +33,56 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     @NonNull
     @Override
-    public ContactAdapter.ContactViewHolder onCreateViewHolder(@NoNull ViewGroup parent, int viewType) {
-        View view =
+    public ContactAdapter.ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = minflater.inflate(R.layout.item_contact, null);
+        return new ContactAdapter.ContactViewHolder(view);
+    }
+
+
+    @Override
+    public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
+        holder.bindData(contactList.get(position));
+    }
+
+    @Override
+    public int getItemCount(){
+        return contactList.size();
+    }
+
+    public void setItem(List<ContactModel> items){
+        contactList = items;
+    }
+
+    public class ContactViewHolder extends RecyclerView.ViewHolder {
+        TextView tvNama, tvHp, tvStatus;
+        ImageView ivAvatar;
+
+        public ContactViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ivAvatar = itemView.findViewById(R.id.ivAvatar);
+            tvNama = itemView.findViewById(R.id.tvNama);
+            tvHp = itemView.findViewById(R.id.tvHp);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
+        }
+
+        public void bindData(final ContactModel item) {
+            ivAvatar.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            tvNama.setText(item.getNama());
+            tvHp.setText(item.getHp());
+            tvStatus.setText(item.getStatus());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
+    }
+
+
+
+
+    public interface OnItemClickListener {
+        void onItemClick(ContactModel item);
     }
 }

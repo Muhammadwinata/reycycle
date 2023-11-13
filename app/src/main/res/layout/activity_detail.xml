@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvNamaDetail"
+        android:text="Nama Kontak"
+        android:fontFamily="sans-serif-black"
+        android:textSize="36sp"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvHpDetail"
+        android:text="No Hp"
+        android:fontFamily="sans-serif"
+        android:textSize="32dp"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/tvNamaDetail"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvStatusDetail"
+        android:text="Status"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/tvHpDetail"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
